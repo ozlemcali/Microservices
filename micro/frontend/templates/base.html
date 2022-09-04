@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+          rel="stylesheet">
+
+    {% block styles %}{% endblock %}
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+
+{#nav bar #}
+{#---------------------------#}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Book Store!</a>
+        <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarNavAltMarkup" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/">Home</a>
+                {% if not session['user'] %}
+                <a class="nav-link" href="/login">Login</a>
+                <a class="nav-link" href="/register">Register</a>
+                {% else %}
+                <a class="nav-link" href="/logout">Logout</a>
+                {% endif %}
+                <a class="nav-link" href="/checkout">Checkout
+                    <span class="badge rounded-pill bg-light text-dark">{{ cart_items }} </span></a>
+            </div>
+        </div>
+    </div>
+</nav>
+{#---------------------------#}
+{#nav bar ends#}
+<div class="container">
+
+    {#messages begin#}
+    {#---------------------------#}
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-primary alert-dismissible fade show mt-3 mb-3" role="alert">
+        {{ message }}
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
+    </div>
+
+    {% endfor %}
+    {#---------------------------#}
+    {#messages end#}
+
+    {% block pageContent %}
+
+    {% endblock %}
+
+    <script crossorigin="anonymous"
+            integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</div>
+</body>
+</html>

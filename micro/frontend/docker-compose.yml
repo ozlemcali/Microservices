@@ -1,0 +1,15 @@
+version: "3.8"
+
+volumes:
+  frontendapp:
+
+services:
+  frontend-service:
+    container_name: frontend-service-c
+    build:
+      context: .
+    ports:
+      - "5001:5001"
+    volumes:
+      - frontendapp:/frontendapp
+    restart: always

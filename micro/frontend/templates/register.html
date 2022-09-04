@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block pageContent %}
+        <div class="container mt-5" style="max-width: 500px">
+        <h1>Register</h1>
+<!--         Register form -->
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.username.label(class_="form-label") }}:
+                {{ form.username(class_="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label(class_="form-label") }}:
+                {{ form.password(class_="form-control") }}
+            </div>
+            {{ form.submit(class_="w-100 btn btn-primary mt-3") }}
+
+        </form>
+    </div>
+{% endblock %}

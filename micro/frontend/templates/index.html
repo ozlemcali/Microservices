@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+
+{% block pageContent %}
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row">
+
+                {% if books | length > 0 %}
+                    {% for book in books.result %}
+
+                        {% set url = "/book/" + book.slug %}
+                        {% set book_cover = "images/" + book.image %}
+                        <div class="col-md-3">
+                            <div class="card mb-4 box-shadow">
+                                <img class="card-img-top"
+                                     alt="" style="width: 100%; display: block;"
+                                     src="{{ url_for('static', filename=book_cover) }}"
+                                     data-holder-rendered="true">
+                                <div class="card-body">
+                                    <p class="card-text">Price: {{ book.price }} $</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="{{ url }}" class="btn btn-sm btn-outline-secondary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <strong>No books found.</strong>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

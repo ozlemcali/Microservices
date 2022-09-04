@@ -1,0 +1,49 @@
+version: "3.8"
+
+volumes:
+  userapp:
+  bookapp:
+  orderapp:
+  frontendapp:
+
+services:
+  user-service:
+    container_name: user-service-c
+    build:
+      context: ../user
+    ports:
+      - "5001:5001"
+    volumes:
+      - userapp:/userapp
+    restart: always
+
+  book-service:
+    container_name: book-service-c
+    build:
+      context: ../book
+    ports:
+      - "5002:5002"
+    volumes:
+      - bookapp:/bookap
+    restart: always
+
+  order-service:
+    container_name: order-service-c
+    build:
+      context: ../order
+    ports:
+      - "5003:5003"
+    volumes:
+      - orderapp:/orderapp
+    restart: always
+
+  frontend-service:
+    container_name: frontend-service-c
+    build:
+      context: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - frontendapp:/frontendapp
+    restart: always
+

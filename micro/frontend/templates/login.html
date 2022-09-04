@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block pageContent %}
+
+    <div class="container mt-5" style="max-width: 500px">
+        <h1>Login</h1>
+        <strong>{{ message }}</strong>
+        <!-- Login form -->
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.username.label(class_="form-label mt-3") }}:
+                {{ form.username(class_="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label(class_="form-label  mt-3") }}:
+                {{ form.password(class_="form-control") }}
+            </div>
+            {{ form.submit(class_="w-100 btn btn-primary mt-3") }}
+
+        </form>
+    </div>
+
+{% endblock %}
+
